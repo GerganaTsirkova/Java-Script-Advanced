@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Collect list items</title>
+</head>
+<body>
+    <ul id = "items">
+        <li>First item</li>
+        <li>Second item</li>
+        <li>Third item</li>
+    </ul>
+    <textarea id = 'result'></textarea>
+    <br>
+    <script>
+        function extractText() {
+            let items = document.querySelectorAll("ul#items li");
+            let textArea = document.querySelector("#result");
+            for (let item of items) {
+                textArea.value += item.textContent + '\n';
+            }
+        }
+    </script>
+    <button onclick="extractText()">Extract text</button>
+</body>
+</html>
