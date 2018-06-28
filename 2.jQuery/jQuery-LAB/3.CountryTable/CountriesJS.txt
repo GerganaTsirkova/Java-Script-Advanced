@@ -1,0 +1,52 @@
+function initializeTable() {
+    $('#createLink').on('click',createCountry);
+    addCountry('Bulgaria','Sofia');
+    addCountry('Germany','Berlin');
+    addCountry('Russia','Moscow');
+
+
+    function addCountry(country,town) {
+        let row = ($('<tr>'))
+            .append(`<td>${country}</td>`)
+            .append(`<td>${town}</td>`)
+            .append($('<td>')
+                .append(($("<a href='#'>[Up]</a>")).on('click', moveRowUp))
+                .append(($("<a href='#'>[Down]</a>")).on('click', moveRowDown))
+                .append(($("<a href='#'>[Delete]</a>")).on('click', deleteData)));
+        $('#countriesTable').append(row);
+    }
+
+    function createCountry() {
+        let country = $('#newCountryText').val();
+        let town = $('#newCapitalText').val();
+        if((country!=='')&&(town!=='')){
+            addCountry(country,town);
+            $('#newCountryText').val('');
+            $('#newCapitalText').val('');
+        }
+        hideButtons();
+    }
+
+    function moveRowUp() {
+        let row = $(this).parent().parent();
+        row.insertBefore(row.prev());
+        hideButtons();
+    }
+
+    function moveRowDown() {
+        let row = $(this).parent().parent();
+        row.insertAfter(row.next());
+        hideButtons();
+    }
+
+    function deleteData() {
+        $(this).parent().parent().remove();
+        hideButtons();
+    }
+    
+    function hideButtons() {
+        $('#countriesTable a').css('display','');
+        $('#countriesTable tr:eq(2) a:contains("Up")').css('display', 'none');
+        $('#countriesTable tr:last a:contains("Down")').css('display','none');
+    }
+}

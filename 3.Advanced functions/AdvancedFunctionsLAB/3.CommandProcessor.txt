@@ -1,0 +1,22 @@
+function solve(arr) {
+    let commandProcessor = (function () {
+        let result = '';
+        return {
+            'append': (str)=> {result += str},
+            'removeStart':(n) => {result = result.substring(Number(n))},
+            'removeEnd':(n) => {result = result.substr(0,result.length -Number(n))},
+            'print': ()=> {
+                console.log(result);}
+        }
+    }());
+
+    for (let element of arr) {
+        let [command,string] = element.split(' ');
+        commandProcessor[command](string);
+    }
+}
+solve(['append hello',
+    'append again',
+    'removeStart 3',
+    'removeEnd 4',
+    'print']);
