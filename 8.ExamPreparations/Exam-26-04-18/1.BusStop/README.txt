@@ -1,0 +1,102 @@
+JS Advanced: Exam 26 April 2018
+Problems for exam preparation for the “JavaScript Advanced” course @ SoftUni. Submit your solutions in the SoftUni judge system at https://judge.softuni.bg/Contests/1004/.
+Problem 1. Bus Route (Simple DOM Interaction)
+You are given the following HTML code:
+bus-route.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bus route</title>
+  <style>
+    body{padding:30px;display:flex;flex-direction:row}section{width:250px;margin:0 50px;background:#DEEAEE;padding:0 25px}h2,h3{text-align:center}h3{margin:0}ol,ul{
+padding:0 20px}button{margin:5px auto}li{padding:2px 5px}li:nth-child(even){
+background:#EAF7FB}li:nth-child(odd){background:#C6D1D4}#enter-stops{padding:25px 10px}#enter-stops>*{display:block;padding:10px 35px}#selected-bus-stops li:first-child{background:#b1cbbb}#selected-bus-stops li:last-child{background:#eea29a}#enter-stops h2{margin:0;text-align:left}span{color:#485788}
+  </style>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+
+    <section>
+        <h2>Given bus route</h2>
+        <ol id="bus-stops" type="1">
+            <!-- Select bus stops from here -->
+        </ol>
+    </section>
+
+    <div class="wrapper">
+        <section id="enter-stops">
+            <h2>Enter bus stops:</h2>
+            <label>First bus stop's number:
+                <input name="first-stop" type="number">
+            </label>
+            <label>Last bus stop's number:
+                <input name="last-stop" type="number">
+            </label>
+            <button onclick="busRoute()">Enter</button>
+        </section>
+    </div>
+    
+    <section>
+        <h2>Selected route</h2>
+        <h3 id="selected-route">Bus stops: <span>none</span></h3>
+        <ul id="selected-bus-stops">
+            <!-- Display your selected bus stops here -->
+        </ul>
+    </section>
+
+    <script>
+        function busRoute() {
+            // TODO: Write your code here
+        }
+        $(() => {
+            let busStops = [
+                "Gen. Gurko St.",
+                "Sofia University",
+                "Eagles' Bridge Sq.",
+                "Bulgarian News Agency",
+                "Peyo Yavorov Blvd.",
+                "Aleksandar Zhendov Bvld.",
+                // You can add/remove bus stops from here
+            ]
+
+            let listBusStops = $('#bus-stops')
+            for (let i = 0; i < busStops.length; i++) {
+                const busStopLi = $('<li>').text(busStops[i]);
+                
+                listBusStops.append(busStopLi)
+            }
+        })
+    </script>
+</body>
+</html>
+Your Task
+Write the missing JavaScript function busRoute() to make the [Enter] button work as expected – when clicked selects your bus stops from your given route of the bus from top to bottom and displays them in the selected route. The [Enter] button should:
+⦁	Receives the text from the input boxes and:
+⦁	Replaces the text "none" inside the span element with the selected bus stops in the following format: "{firstStop}–{lastStop}"
+⦁	Selects from the given route of the bus with the received bus stops and displays it to the list with ID of "selected-bus-stops". See the examples for more details.
+⦁	Clears the input boxes after the bus stops are selected correctly
+⦁	Do nothing if:
+⦁	Either of text boxes is empty 
+⦁	There is invalid data
+Note that, the starting (first) bus stop must always come before the ending (last) one and the two stops must always be different. Also, every bus stop number corresponds to its given one by the list with ID of "bus-stops".
+All given numbers to the text boxes for selecting the bus stops will be integers.
+Submission
+Submit only your busRoute function.
+Examples
+First example:
+ 
+ 
+The HTML DOM before selecting the bus stops.			The HTML DOM after selecting the bus stops.
+  
+
+
+Second example:
+ 
+After entering the new bus stops and pressing [Enter] the previously selected route changes.
+ 
+Third example:
+ 
+Nothing happens after pressing the [Enter] because there is invalid data. There is no 7-th bus stop, so the previously selected route does not change.
+ 
